@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobileApp",
+    "name": "myFirstApp",
     "slug": "mobileApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This is a test app build with my own hands"
   }
 }
