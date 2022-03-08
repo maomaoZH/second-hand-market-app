@@ -5,13 +5,14 @@ import {
   Text,
   SafeAreaView,
   Image,
-  Button,
   View,
 } from "react-native";
 
+import colors from "../config/colors";
+
 const WelcomeScreen = () => {
-  const imageBg = require("./assets/background.jpg");
-  const icon = require("./assets/logo-red.png");
+  const imageBg = require("../assets/background.jpg");
+  const icon = require("../assets/logo-red.png");
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -19,12 +20,12 @@ const WelcomeScreen = () => {
         resizeMode="cover"
         style={styles.imageBg}
       >
-        <Image source={icon} style={styles.icon} />
-        <Text style={styles.text}>Sell what you don't need</Text>
-        <View style={styles.buttonGroup}>
-          <Button title="register" color="#fc5c65"></Button>
-          <Button title="login" color="#4ECDC4"></Button>
+        <View style={styles.iconWrapper}>
+          <Image source={icon} style={styles.icon} />
+          <Text style={styles.text}>Sell what you don't need</Text>
         </View>
+        <View style={styles.register} />
+        <View style={styles.login} />
       </ImageBackground>
     </SafeAreaView>
   );
@@ -33,25 +34,32 @@ const WelcomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   imageBg: {
     flex: 1,
     display: "flex",
-    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  iconWrapper: {
+    position: "absolute",
+    top: 48,
+    display: "flex",
     alignItems: "center",
   },
   icon: {
     width: 64,
     height: 64,
-    justifyContent: "center",
   },
-  text: {
-    color: "#000",
+  register: {
+    width: "100%",
+    height: 64,
+    backgroundColor: colors.primary,
   },
-  buttonGroup: {
-    display: "flex",
-    // alignSelf: "flex-end",
+  login: {
+    width: "100%",
+    height: 64,
+    backgroundColor: colors.secondary,
   },
 });
 
