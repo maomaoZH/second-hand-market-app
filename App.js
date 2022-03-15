@@ -1,5 +1,5 @@
-import ViewImageScreen from "./app/screens/ViewImageScreen";
+import WeatherWidget from "./app/screens/WeatherWidget";
 
 export default function App() {
-  return <ViewImageScreen />;
+  return <WeatherWidget />;
 }
