@@ -1,45 +1,36 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Image,
-  View,
-} from "react-native";
+import { ImageBackground, StyleSheet, Text, Image, View } from "react-native";
 
-import colors from "../config/colors";
+import AppButton from "../components/AppButton";
+import Card from "../components/Card";
 
 const WelcomeScreen = () => {
   const imageBg = require("../assets/background.jpg");
   const icon = require("../assets/logo-red.png");
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={imageBg}
-        resizeMode="cover"
-        style={styles.imageBg}
-      >
-        <View style={styles.iconWrapper}>
-          <Image source={icon} style={styles.icon} />
-          <Text style={styles.text}>Sell what you don't need</Text>
-        </View>
-        <View style={styles.register} />
-        <View style={styles.login} />
-      </ImageBackground>
-    </SafeAreaView>
+    <ImageBackground
+      source={imageBg}
+      resizeMode="cover"
+      style={styles.imageBg}
+      blurRadius={10}
+    >
+      <View style={styles.iconWrapper}>
+        <Image source={icon} style={styles.icon} />
+        <Text style={styles.tagline}>Sell what you don't need</Text>
+      </View>
+      <AppButton title="Login" onPress={() => console.log("tapped")} />
+      <AppButton title="register" color="secondary"></AppButton>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   imageBg: {
     flex: 1,
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    padding: 20,
   },
   iconWrapper: {
     position: "absolute",
@@ -51,15 +42,10 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
   },
-  register: {
-    width: "100%",
-    height: 64,
-    backgroundColor: colors.primary,
-  },
-  login: {
-    width: "100%",
-    height: 64,
-    backgroundColor: colors.secondary,
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    paddingVertical: 20,
   },
 });
 

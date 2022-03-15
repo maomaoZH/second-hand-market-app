@@ -1,15 +1,24 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, Image, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
 const ViewImageScreen = () => {
-  const image = require("../assets/chair.jpg");
+  const image = require("../assets/jacket.jpg");
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.cancelIcon} />
-      <View style={styles.confirmIcon} />
+      <View style={styles.cancelIcon}>
+        <MaterialCommunityIcons name="close" size={35} color="white" />
+      </View>
+      <View style={styles.confirmIcon}>
+        <MaterialCommunityIcons
+          name="trash-can-outline"
+          size={35}
+          color="white"
+        />
+      </View>
       <Image source={image} style={styles.image} resizeMode="contain" />
     </SafeAreaView>
   );
@@ -22,17 +31,11 @@ const styles = StyleSheet.create({
   },
   cancelIcon: {
     position: "absolute",
-    height: 50,
-    width: 50,
-    backgroundColor: colors.primary,
     top: 40,
     left: 30,
   },
   confirmIcon: {
     position: "absolute",
-    height: 50,
-    width: 50,
-    backgroundColor: colors.secondary,
     top: 40,
     right: 30,
   },
