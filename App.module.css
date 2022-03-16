@@ -1,0 +1,8 @@
+@import "~@telekom/scale-design-tokens/dist/design-tokens-telekom.css";
+
+.container {
+  background-color: var(--scl-color-orange-40);
+  width: 100%;
+  height: 100%;
+  height: 100px;
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 
+import { color } from "@telekom/scale-design-tokens/dist/design-tokens-telekom.js";
+
 import listApi from "../api/listings";
-import colors from "../config/colors";
 
 function WeatherWidget(props) {
   const [lists, setLists] = useState([]);
@@ -16,11 +17,14 @@ function WeatherWidget(props) {
     setLists(res.data["articles"]);
   };
 
-  console.log(lists.length);
   return (
     !!lists.length &&
-    lists.map((list) => (
-      <View style={styles.container}>
+    lists.map((list, index) => (
+      <View style={styles.container} key={index}>
+        <View style={styles.textWrapper}>
+          <Text style={styles.title}>{list["source"]["name"]}</Text>
+          <Text style={styles.description}>{list["title"]}</Text>
+        </View>
         <Image
           style={styles.image}
           resizeMode="cover"
@@ -28,10 +32,6 @@ function WeatherWidget(props) {
             uri: list["urlToImage"],
           }}
         />
-        <View style={styles.textWrapper}>
-          <Text style={styles.title}>News</Text>
-          <Text style={styles.description}>{list["title"]}</Text>
-        </View>
       </View>
     ))
   );
@@ -41,39 +41,36 @@ export default WeatherWidget;
 
 const styles = StyleSheet.create({
   container: {
-    height: 192,
+    height: 100,
     width: "100%",
     flexDirection: "row",
-    borderRadius: 12,
     marginTop: 10,
-    padding: 6,
-    borderRadius: 12,
-    backgroundColor: colors.white,
+    backgroundColor: "transparent",
     overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    height: "100%",
-    width: "50%",
+    height: 80,
+    width: 80,
+    borderRadius: 6,
+    marginLeft: 6,
   },
   textWrapper: {
-    width: "50%",
+    width: "70%",
     height: "100%",
     display: "flex",
     overflow: "hidden",
-    paddingHorizontal: 12,
   },
   title: {
     fontSize: 12,
     fontWeight: "bold",
     overflow: "hidden",
     color: "grey",
-    marginBottom: 12,
+    marginBottom: 6,
   },
   subtitle: {
     fontSize: 12,
-    marginTop: 12,
     textDecorationStyle: "dotted",
     overflow: "hidden",
     fontWeight: "bold",

@@ -20,6 +20,10 @@
     "web": {
       "favicon": ""
     },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "css"]
+    },
     "description": "This is a test app build with my own hands"
   }
 }
