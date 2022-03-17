@@ -1,6 +1,3 @@
-export default {
-  primary: "#fc5c65",
-  secondary: "#4ECDC4",
-  black: "#000",
-  white: "#fff",
-};
+import { color } from "@telekom/scale-design-tokens/dist/design-tokens-telekom.js";
+
+export default color;

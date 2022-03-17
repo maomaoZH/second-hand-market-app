@@ -1,4 +1,4 @@
-import { ImageBackground, View, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet } from "react-native";
 import WeatherWidget from "./app/screens/WeatherWidget";
 
 export default function App() {
@@ -9,9 +9,7 @@ export default function App() {
       style={styles.imageBg}
       blurRadius={10}
     >
-      <View style={styles.container}>
-        <WeatherWidget />
-      </View>
+      <WeatherWidget />
     </ImageBackground>
   );
 }
@@ -24,13 +22,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%",
     width: "100%",
-  },
-  container: {
-    height: "70%",
-    width: "80%",
-    display: "flex",
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 10,
   },
 });

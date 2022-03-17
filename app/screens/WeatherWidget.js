@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-
-import { color } from "@telekom/scale-design-tokens/dist/design-tokens-telekom.js";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 
 import listApi from "../api/listings";
+import color from "../config/colors";
 
 function WeatherWidget(props) {
   const [lists, setLists] = useState([]);
@@ -17,23 +23,34 @@ function WeatherWidget(props) {
     setLists(res.data["articles"]);
   };
 
+  const handlePress = (url) => {
+    console.log(url);
+    Linking.openURL(url);
+  };
   return (
-    !!lists.length &&
-    lists.map((list, index) => (
-      <View style={styles.container} key={index}>
-        <View style={styles.textWrapper}>
-          <Text style={styles.title}>{list["source"]["name"]}</Text>
-          <Text style={styles.description}>{list["title"]}</Text>
-        </View>
-        <Image
-          style={styles.image}
-          resizeMode="cover"
-          source={{
-            uri: list["urlToImage"],
-          }}
-        />
-      </View>
-    ))
+    <View style={styles.widgetContainer}>
+      <Text style={styles.text}>Headlines</Text>
+      {!!lists.length &&
+        lists.map((list, index) => (
+          <TouchableOpacity
+            style={styles.container}
+            key={index}
+            onPress={() => handlePress(list["url"])}
+          >
+            <View style={styles.textWrapper}>
+              <Text style={styles.title}>{list["source"]["name"]}</Text>
+              <Text style={styles.description}>{list["title"]}</Text>
+            </View>
+            <Image
+              style={styles.image}
+              resizeMode="cover"
+              source={{
+                uri: list["urlToImage"],
+              }}
+            />
+          </TouchableOpacity>
+        ))}
+    </View>
   );
 }
 
@@ -44,7 +61,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: 6,
     backgroundColor: "transparent",
     overflow: "hidden",
     justifyContent: "center",
@@ -54,6 +71,18 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80,
     borderRadius: 6,
+    marginLeft: 6,
+  },
+  subtitle: {
+    fontSize: 12,
+    textDecorationStyle: "dotted",
+    overflow: "hidden",
+    fontWeight: "bold",
+  },
+
+  text: {
+    fontSize: 14,
+    fontWeight: "700",
     marginLeft: 6,
   },
   textWrapper: {
@@ -67,12 +96,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     overflow: "hidden",
     color: "grey",
-    marginBottom: 6,
+    marginBottom: 3,
+    textTransform: "uppercase",
   },
-  subtitle: {
-    fontSize: 12,
-    textDecorationStyle: "dotted",
-    overflow: "hidden",
-    fontWeight: "bold",
+  widgetContainer: {
+    height: "auto",
+    width: "90%",
+    display: "flex",
+    backgroundColor: color.white,
+    borderRadius: 12,
+    padding: 10,
   },
 });
